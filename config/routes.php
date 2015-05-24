@@ -9,5 +9,20 @@
   });
   
   $routes->get('/kirjautuminen', function() {
-    HelloWorldController::testi();
+    HelloWorldController::kirjautuminen();
   });
+  
+  $routes->get('/uusioppilas', function() {
+    HelloWorldController::oppilaanluonti();
+  });
+  
+  $routes->get('/uusiaine', function() {
+    HelloWorldController::aineenluonti();
+  });
+  
+  $routes->get('/arviointi', function() {
+    HelloWorldController::numeronantaminen();
+  });
+
+
+

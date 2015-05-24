@@ -18,7 +18,6 @@ CREATE TABLE oppiaine
 (
 id serial primary key,
 nimi varchar(255),
-oppilas_id integer references oppilas(id) on delete cascade on update cascade,
 opettaja_id integer references opettaja(id) on delete cascade on update cascade
 );
 
@@ -27,6 +26,6 @@ CREATE TABLE arvosana
 id serial primary key,
 arvosana varchar(2),
 oppilas_id integer references oppilas(id) on delete cascade on update cascade,
-opettaja_id integer references opettaja(id) on delete cascade on update cascade
+oppiaine_id integer references oppiaine(id) on delete cascade on update cascade
 );
 

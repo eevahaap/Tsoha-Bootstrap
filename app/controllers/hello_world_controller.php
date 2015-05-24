@@ -12,7 +12,19 @@
       View::make('numeronantaminen.html');
     }
     
-    public static function testi() {
+    public static function kirjautuminen() {
         View::make('kirjautuminen.html');
+    }
+    
+    public static function aineenluonti() {
+        View::make('aineenluonti.html');
+    }
+    
+    public static function oppilaanluonti() {
+        View::make('oppilaanluonti.html');
+    }
+    
+    public static function  numeronantaminen() {
+        View::make('numeronantaminen.html');
     }
   }

@@ -1,10 +1,13 @@
-# Tietokantasovelluksen esittelysivu
+Harjoitustyöni aiheena on koulutodistus. Ohjelmalla opettaja voi antaa oppilaille arvosanoja eri oppiaineista.
 
-Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/
 
-## Työn aihe
+https://github.com/eevahaap/koulutodistus/blob/master/dokumentaatio.pdf
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+uudet html-sivut
+
+http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/kirjautuminen
+http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/uusiaine
+http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/uusioppilas
+http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/arviointi
