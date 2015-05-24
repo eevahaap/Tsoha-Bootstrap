@@ -9,7 +9,7 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('aineenluonti.html');
+      View::make('numeronantaminen.html');
     }
     
     public static function testi() {
