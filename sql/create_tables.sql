@@ -11,7 +11,8 @@ CREATE TABLE oppilas
 id serial primary key,
 etunimi varchar(50),
 sukunimi varchar(50),
-luokka varchar(5)
+luokka varchar(5),
+opiskelianro varchar(10)
 );
 
 CREATE TABLE oppiaine
