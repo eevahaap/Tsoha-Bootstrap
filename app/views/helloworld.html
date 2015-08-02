@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    
+{% extends "base.html" %}
+{% block content %}
   <h1>Painikkeet</h1>
   <button>Tavallinen painike</button>
   <button class="btn btn-default">Bootstrap painike</button>
@@ -14,8 +8,8 @@ and open the template in the editor.
   <button class="btn btn-danger">Bootstrap painike</button>
 
   <h1>Tekstikentät</h1>
-  <input type="text" placeholder="Tavallinen tekstikenttä">
-  <input type="text" class="form-control" placeholder="Bootstrap tekstikenttä">
+  <input placeholder="Tavallinen tekstikenttä" type="text">
+  <input class="form-control" placeholder="Bootstrap tekstikenttä" type="text">
 
   <h1>Taulukot</h1>
   <table>
@@ -55,4 +49,4 @@ and open the template in the editor.
       </tr>
     </tbody>
   </table>
-</html>
+{% endblock %}
