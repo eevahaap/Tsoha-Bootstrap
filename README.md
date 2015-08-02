@@ -3,7 +3,7 @@ Harjoitustyöni aiheena on koulutodistus. Ohjelmalla opettaja voi antaa oppilail
 
 http://eevahaap.users.cs.helsinki.fi/tsoha_todistus/
 
-https://github.com/eevahaap/Tsoha-Bootstrap/blob/master/dokumentaatio.pdf
+
 
 uudet html-sivut
 
