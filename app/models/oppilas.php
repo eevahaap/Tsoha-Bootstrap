@@ -109,10 +109,10 @@ public function setOppiluokka($luokka) {
     
     
 public static function haeOppilas($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
-        $sql = "SELECT * FROM tarkeysaste WHERE id = ? and kayttaja_id = ? LIMIT 1";
-        $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array($id, $etunimi, $sukunimi, $luokka, $opiskelijanro));
-        $tulos = $kysely->fetchObject();
+        $sql = "SELECT * FROM oppilas WHERE id = ? and kayttaja_id = ? LIMIT 1";
+        $haku = getTietokantayhteys()->prepare($sql);
+        $haku->execute(array($id, $etunimi, $sukunimi, $luokka, $opiskelijanro));
+        $tulos = $haku->fetchObject();
         if ($tulos == null) {
             return null;
         } else {
@@ -120,6 +120,23 @@ public static function haeOppilas($id, $etunimi, $sukunimi, $luokka, $opiskelija
             return $oppilas;
         }
     }
+    
+public function poistaOppilas($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
+        $sql = "DELETE FROM oppilas WHERE id=?";
+        $haku = getTietokantayhteys()->prepare($sql);
+        $haku->execute(array($id, $etunimi, $sukunimi, $luokka, $opiskelijanro));
+    }
+    
+
+public function muokkaaOppilasta($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
+        $sql = "UPDATE tarkeysaste SET etunimi=?, sukunimi=?, luokka=?, opiskelijanro=? WHERE id=?";
+        $haku = getTietokantayhteys()->prepare($sql);
+        $muokkaus = $haku->execute(array($this->nimi, $this->etunimi, $this->sukunimi, $this->luokka, $this->opiskelijanro, $id));
+        if ($muokkaus) {
+            $this->id = $haku->fetchColumn();
+        }
+        return $muokkaus;
+    }    
     
 
 }
