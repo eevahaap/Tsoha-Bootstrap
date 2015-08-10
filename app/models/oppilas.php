@@ -6,15 +6,18 @@ class Oppilas {
     private $sukunimi;
     private $luokka;
     private $opiskelijanro;
+ //   private $oppiaine_id;
     private $virheet = array();
+   
 
 
-public function __construct($id, $etunimi, $sukunimi, $luokka) {
+public function __construct($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
     $this->id = $id;
     $this->etunimi = $etunimi;
     $this->sukunimi = $sukunimi;
     $this->luokka = $luokka;
     $this->opiskelijanro = $opiskelijanro;
+  //  $this->oppiaine_id = 
     $this->virheet = array();
 }
 
@@ -60,14 +63,36 @@ public function setEtunimi($etunimi) {
     
 public function setSukunimi($sukunimi) {
         $this->sukunimi = $sukunimi;
-        if (trim($this->etunimi) == '') {
-            $this->virheet['etunimi'] = "Nimi ei saa olla tyhjä.";
-        } elseif (strlen($this->etunimi) > 50) {
-            $this->virheet['etunimi'] = "Nimen on oltava alle 50 merkkiä pitkä.";
+        if (trim($this->sukunimi) == '') {
+            $this->virheet['sukunimi'] = "Nimi ei saa olla tyhjä.";
+        } elseif (strlen($this->sukunimi) > 50) {
+            $this->virheet['sukunimi'] = "Nimen on oltava alle 50 merkkiä pitkä.";
         } else {
             unset($this->virheet['etunimi']);
         }
-    }    
+    }
+    
+ public function setOpiskelijanro($opiskelijanro) {
+        $this->opiskelijanro = $opiskelijanro;
+        if (trim($this->opiskelijanro) == '') {
+            $this->virheet['opiskelijanro'] = "Opiskelijanumero ei voi olla tyhjä.";
+        } elseif (strlen($this->opiskelijanro) = 8) {
+            $this->virheet['opiskelijanro'] = "Opiskelijanumero on 8 merkkiä pitkä.";
+        } else {
+            unset($this->virheet['opiskelijanro']);
+        }
+    }   
+    
+public function setOppiluokka($luokka) {
+        $this->luokka = $luokka;
+        if (trim($this->luokka) == '') {
+            $this->virheet['luokka'] = "Luokka ei voi olla tyhjä.";
+        } elseif (strlen($this->luokka) > 3) {
+            $this->virheet['luokka'] = "";
+        } else {
+            unset($this->virheet['luokka']);
+        }
+    }     
     
     //haetaan oppilaat tietokannasta
     public static function getOppilaat() {
@@ -80,6 +105,20 @@ public function setSukunimi($sukunimi) {
             $tulos[] = $oppilas;
         }
         return $tulos;
+    }
+    
+    
+public static function haeOppilas($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
+        $sql = "SELECT * FROM tarkeysaste WHERE id = ? and kayttaja_id = ? LIMIT 1";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($id, $etunimi, $sukunimi, $luokka, $opiskelijanro));
+        $tulos = $kysely->fetchObject();
+        if ($tulos == null) {
+            return null;
+        } else {
+            $oppilas = new Tarkeysaste($tulos->id, $tulos->etunimi, $tulos->sukunimi, $tulos->luokka, $tulos->opiskelijanro);
+            return $oppilas;
+        }
     }
     
 
