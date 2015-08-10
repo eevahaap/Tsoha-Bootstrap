@@ -8,4 +8,4 @@ insert into oppiaine (nimi, opettaja_id)
 values('Matematiikka', 3);
 
 insert into arvosana (arvosana, oppilas_id, oppiaine_id)
-values('10', 5, 1);
+values(8, 5, 1);
