@@ -1,6 +1,6 @@
 <?php
 
-class Oppilas {
+class Oppilas  extends BaseModel{
     private $id;
     private $etunimi;
     private $sukunimi;

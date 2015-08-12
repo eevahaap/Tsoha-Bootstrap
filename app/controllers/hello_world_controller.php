@@ -1,5 +1,7 @@
 <?php
 
+require 'app/models/oppilas.php';
+
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -9,7 +11,7 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('numeronantaminen.html');
+      
     }
     
     public static function kirjautuminen() {
