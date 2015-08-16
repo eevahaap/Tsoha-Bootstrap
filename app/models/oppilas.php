@@ -5,9 +5,10 @@ class Oppilas  extends BaseModel{
     private $etunimi;
     private $sukunimi;
     private $luokka;
-    private $opiskelijanro;
+    private $opiskelijanro; 
  //   private $oppiaine_id;
-    private $virheet = array();
+// public $id, $etunimi, $sukunimi, $luokka, $opiskelijanro;
+ private $virheet = array();
    
 
 
@@ -19,6 +20,8 @@ public function __construct($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
     $this->opiskelijanro = $opiskelijanro;
   //  $this->oppiaine_id = 
     $this->virheet = array();
+    
+   
 }
 
 public function getId() {
@@ -76,7 +79,7 @@ public function setSukunimi($sukunimi) {
         $this->opiskelijanro = $opiskelijanro;
         if (trim($this->opiskelijanro) == '') {
             $this->virheet['opiskelijanro'] = "Opiskelijanumero ei voi olla tyhjä.";
-        } elseif (strlen($this->opiskelijanro) = 8) {
+        } elseif (strlen($this->opiskelijanro) > 11) {
             $this->virheet['opiskelijanro'] = "Opiskelijanumero on 8 merkkiä pitkä.";
         } else {
             unset($this->virheet['opiskelijanro']);
@@ -138,6 +141,10 @@ public function muokkaaOppilasta($id, $etunimi, $sukunimi, $luokka, $opiskelijan
         return $muokkaus;
     }    
     
+    
+    
+    
 
 }
+
 

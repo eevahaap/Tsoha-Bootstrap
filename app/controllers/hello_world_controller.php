@@ -11,7 +11,11 @@ require 'app/models/oppilas.php';
 
     public static function sandbox(){
       // Testaa koodiasi täällä
+      $testiopp = Oppilas::haeOppilas(1);
+      $oppilaat = Oppilas::getOppilaat();
       
+      Kint::dump($oppilaat);
+      Kint::dump($testiopp);
     }
     
     public static function kirjautuminen() {
@@ -29,4 +33,16 @@ require 'app/models/oppilas.php';
     public static function  numeronantaminen() {
         View::make('numeronantaminen.html');
     }
+    
+    
+    public static function store() {
+        $params = $_POST;
+     $testiopp = new Oppilas(array(
+         'id' => $params[1], 
+         'etunimi' => $params['Pasi'], 
+         'sukunimi' => $params['Oppilas'], 
+         'luokka' => $params['5A']
+         ));
+    }
+    
   }
