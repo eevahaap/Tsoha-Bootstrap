@@ -3,17 +3,17 @@
 class Opettaja_controller extends BaseController {
     
     public function kirjaudu() {
-        View::make('base.html');
+        View::make('kirjautuminen.html');
        
     }
     
     public function tarkistaKirjautuja() {
         $params = $_POST;
         
-        $opettaja = Opettaja::kirjaudu($params['tunnus'], $params['salasana']);
+        $opettaja = Opettaja::kirjautuminen($params['tunnus'], $params['salasana']);
         
         if(!$opettaja) {
-            View::make('base.html', array('virhe' => 'Väärä tunnus ja/tai salasana', 'tunnus'=>$params['tunnus']));
+            View::make('kirjautuminen.html', array('virhe' => 'Väärä tunnus ja/tai salasana', 'tunnus'=>$params['tunnus']));
             
         } else {
             $_SESSION['user'] = $opettaja->id;
