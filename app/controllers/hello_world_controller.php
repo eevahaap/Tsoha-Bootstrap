@@ -18,9 +18,6 @@ require 'app/models/oppilas.php';
       Kint::dump($testiopp);
     }
     
-    public static function kirjautuminen() {
-        View::make('kirjautuminen.html');
-    }
     
     public static function aineenluonti() {
         View::make('aineenluonti.html');
