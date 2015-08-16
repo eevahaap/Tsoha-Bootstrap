@@ -41,7 +41,8 @@ require 'app/models/oppilas.php';
          'id' => $params[1], 
          'etunimi' => $params['Pasi'], 
          'sukunimi' => $params['Oppilas'], 
-         'luokka' => $params['5A']
+         'luokka' => $params['5A'],
+         'opiskelijanro' => $params['12345678']
          ));
     }
     
