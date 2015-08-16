@@ -6,19 +6,19 @@ class Oppilas  extends BaseModel{
     private $sukunimi;
     private $luokka;
     private $opiskelijanro; 
-  //  private $oppiaine_id;
+    private $oppiaine_id;
 // public $id, $etunimi, $sukunimi, $luokka, $opiskelijanro;
  private $virheet = array();
    
 
 
-public function __construct($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
+public function __construct($id, $etunimi, $sukunimi, $luokka, $opiskelijanro, $oppiaine_id) {
     $this->id = $id;
     $this->etunimi = $etunimi;
     $this->sukunimi = $sukunimi;
     $this->luokka = $luokka;
     $this->opiskelijanro = $opiskelijanro;
-  //  $this->oppiaine_id = 
+    $this->oppiaine_id = $oppiaine_id;
     $this->virheet = array();
     
    
