@@ -6,7 +6,7 @@ require 'app/models/oppilas.php';
 
     public static function index(){
       // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-   	  View::make('helloworld.html');
+   	  View::make('etusivu.html');
     }
 
     public static function sandbox(){
@@ -18,14 +18,30 @@ require 'app/models/oppilas.php';
       Kint::dump($testiopp);
     }
     
+    public static function oppiaineenluonti() {
+        $params = $_POST;
+     $atribuutit = array(
+         'nimi' => $params['nimi'], 
+         );
+     
+   /*  $testiopp = new Oppilas($atribuutit);
+    // $virheet = $testiopp->virheet();
+     
+     if (true) {
+         $testiopp->tallennaOppilas();
+         
+        Redirect::to('/',array('viesti' => 'ok!' ));
+     } else {
+         View::make("oppilaanluonti.html");
+     }
+     */
+    } 
     
-    public static function aineenluonti() {
+   public static function aineenluonti() {
         View::make('aineenluonti.html');
-    }
+    } 
     
-    public static function oppilaanluonti() {
-        View::make('oppilaanluonti.html');
-    }
+    
     
     public static function  numeronantaminen() {
         View::make('numeronantaminen.html');

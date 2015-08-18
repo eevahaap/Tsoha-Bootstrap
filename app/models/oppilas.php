@@ -1,24 +1,14 @@
 <?php
 
 class Oppilas  extends BaseModel{
-    private $id;
-    private $etunimi;
-    private $sukunimi;
-    private $luokka;
-    private $opiskelijanro; 
-    private $oppiaine_id;
-// public $id, $etunimi, $sukunimi, $luokka, $opiskelijanro;
+
+ public $id, $etunimi, $sukunimi, $luokka;
  private $virheet = array();
    
 
 
-public function __construct($id, $etunimi, $sukunimi, $luokka, $opiskelijanro, $oppiaine_id) {
-    $this->id = $id;
-    $this->etunimi = $etunimi;
-    $this->sukunimi = $sukunimi;
-    $this->luokka = $luokka;
-    $this->opiskelijanro = $opiskelijanro;
-    $this->oppiaine_id = $oppiaine_id;
+public function __construct($attributes) {
+    parent::__construct($attributes);
     $this->virheet = array();
     
    
@@ -40,9 +30,6 @@ public function getLuokka() {
     return $this->luokka;
 }
 
-public function getOpiskelijanro() {
-    return $this->opiskelijanro;
-}
 
 public function getVirheet() {
         return $this->virheet;
@@ -74,17 +61,7 @@ public function setSukunimi($sukunimi) {
             unset($this->virheet['etunimi']);
         }
     }
-    
- public function setOpiskelijanro($opiskelijanro) {
-        $this->opiskelijanro = $opiskelijanro;
-        if (trim($this->opiskelijanro) == '') {
-            $this->virheet['opiskelijanro'] = "Opiskelijanumero ei voi olla tyhjä.";
-        } elseif (strlen($this->opiskelijanro) > 11) {
-            $this->virheet['opiskelijanro'] = "Opiskelijanumero on 8 merkkiä pitkä.";
-        } else {
-            unset($this->virheet['opiskelijanro']);
-        }
-    }   
+      
     
 public function setLuokka($luokka) {
         $this->luokka = $luokka;
@@ -98,7 +75,7 @@ public function setLuokka($luokka) {
     }     
     
     //haetaan oppilaat tietokannasta
-    public static function getOppilaat() {
+    public static function haeOppilaat() {
         $query = DB::connection()->prepare('SELECT * FROM Oppilas');
         $query->execute();
         $rows = $query->fetchAll();
@@ -109,22 +86,22 @@ public function setLuokka($luokka) {
                 'id' => $row['id'],
                 'etunimi' => $row['etunimi'],
                 'sukunimi' => $row['sukunimi'],
-                'luokka' => $row['luokka'],
-                'opiskelijanro' => $row['opiskelijanro']  
+                'luokka' => $row['luokka']
+                 
             ));
         }
         return $oppilaat;
     }
     
     
-public static function haeOppilas($id, $etunimi, $sukunimi, $luokka, $opiskelijanro) {
-        $query = DB::connection()->prepare('SELECT * FROM oppilas WHERE id = ? LIMIT 1');
+public static function haeOppilas($id) {
+        $query = DB::connection()->prepare('SELECT * FROM oppilas WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row == null) {
             return null;
         } else {
-            $oppilas = new Oppilas($tulos->id, $tulos->etunimi, $tulos->sukunimi, $tulos->luokka, $tulos->opiskelijanro);
+            $oppilas = new Oppilas(array('id'=>$row['id'], 'etunimi'=>$row['etunimi'], 'sukunimi'=>$row['sukunimi'], 'luokka'=>$row['luokka']));
             return $oppilas;
         }
     }
@@ -136,8 +113,8 @@ public function poistaOppilas($id) {
     
 
 public function muokkaaOppilasta($id) {
-        $query = DB::connection()->prepare('UPDATE oppilas SET etunimi=?, sukunimi=?, luokka=?, opiskelijanro=? WHERE id=?');
-        $muokkaus = $query->execute(array($this->nimi, $this->etunimi, $this->sukunimi, $this->luokka, $this->opiskelijanro, $id));
+        $query = DB::connection()->prepare('UPDATE oppilas SET etunimi=?, sukunimi=?, luokka=? WHERE id=?');
+        $muokkaus = $query->execute(array($this->nimi, $this->etunimi, $this->sukunimi, $this->luokka, $id));
         if ($muokkaus) {
             $this->id = $query->fetchColumn();
         }
@@ -145,10 +122,10 @@ public function muokkaaOppilasta($id) {
     } 
     
     
-public function tallennaOppi()    {
+public function tallennaOppilas()    {
     
-    $query = DB::connection()->prepare('INSERT INTO Oppilas(id, etunimi, sukunimi, luokka, opiskelijanro VALUES (:id, :etunimi, :sukunimi, :luokka, :opiskelijanro) RETURNING id');
-    $query->execute(array('id' => $this->id, 'etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'luokka' => $this->luokka, 'opiskelijanro' => $this->opiskelijanro));
+    $query = DB::connection()->prepare('INSERT INTO Oppilas(etunimi, sukunimi, luokka) VALUES (:etunimi, :sukunimi, :luokka) RETURNING id');
+    $query->execute(array('etunimi' => $this->etunimi, 'sukunimi' => $this->sukunimi, 'luokka' => $this->luokka));
 
     $row = $query->fetch();
     Kint::dump($row);

@@ -1,5 +1,5 @@
-drop table opettaja;
-drop table oppilas;
-drop table oppiaine;
-drop table arvosana;
+drop table opettaja cascade;
+drop table oppilas cascade;
+drop table oppiaine cascade;
+drop table arvosana cascade;
 

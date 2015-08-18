@@ -18,7 +18,7 @@ class Opettaja_controller extends BaseController {
         } else {
             $_SESSION['user'] = $opettaja->id;
             
-            Redirect::to('etusivu.html', array('viesti' => 'Tervetuloa!' ));
+            Redirect::to('/', array('viesti' => 'Tervetuloa!' ));
         }
     }
     

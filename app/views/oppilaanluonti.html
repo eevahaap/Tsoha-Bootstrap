@@ -1,46 +1,29 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Uusi oppilas</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
-        <link href="../css/main.css" rel="stylesheet">
-    </head>
-    <body>
+{% extends "base.html" %}
+    {% block content %}
   <div class="container">
     <h1>Uusi oppilas arvioitavaksi</h1>
-    <form class="form-horizontal" role="form" action="lomake.html" method="POST">
+    <form action="{{base_path}}/uusioppilas" method="POST">
       <div class="form-group">
-        <label>Oppilaan etunimi</label>
-        <div class="col-md-10">
-            <input type="text" name="etunimi_opp">
-        </div>
+          <label>Oppilaan etunimi</label><br>
+            <input type="text" name="etunimi">
       </div>
         <div class="form-group">
-        <label>Oppilaan sukunimi</label>
-        <div class="col-md-10">
-            <input type="text" name="sukunimi_opp">
-        </div>
+            <label>Oppilaan sukunimi</label><br>
+       
+            <input type="text" name="sukunimi">
       </div>
       <div class="form-group">
-        <label>Luokka</label>
-        <div class="col-md-10">
+          <label>Luokka</label><br>
+      
             <input type="text" name="luokka">
-        </div>
+
       </div>  
     
       <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="button" class="btn btn-default">Luo oppilaan tiedot</button>
-        </div>
+            <button type="submit" class="btn btn-default">Luo oppilaan tiedot</button>
+
       </div>
     </form>
   </div>
-</body>
-</html>
+
+{% endblock %}

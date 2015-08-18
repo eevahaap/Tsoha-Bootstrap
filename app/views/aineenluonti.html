@@ -1,26 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-    
-        <title>Uusi oppiaine</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
-        <link href="../css/main.css" rel="stylesheet">
-   
    
   <div class="container">
     <h1>Uusi oppiaine arvioitavaksi</h1>
-    <form class="form-horizontal" role="form" action="lomake.html" method="POST">
+    <form action="{{base_path}}/aineenluonti" method="POST">
       <div class="form-group">
         <label>Oppiaine</label>
         <div class="col-md-10">
-            <input type="text" name="tunnus">
+            <input type="text" name="nimi">
         </div>
       </div>
     
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="button" class="btn btn-default">Lisää aine</button>
+            <button type="submit" class="btn btn-default">Lisää aine</button>
         </div>
       </div>
     </form>
