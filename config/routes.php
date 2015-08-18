@@ -9,8 +9,13 @@
   });
   
   $routes->get('/kirjautuminen', function() {
-    HelloWorldController::kirjautuminen();
+      Opettaja_controller::kirjaudu();
   });
+  
+  $routes->post('/kirjautuminen', function(){
+  // tarkista kirjautuja
+  Opettaja_controller::tarkistaKirjautuja();
+});
   
   $routes->get('/uusioppilas', function() {
     HelloWorldController::oppilaanluonti();
