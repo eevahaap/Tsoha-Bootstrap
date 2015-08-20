@@ -9,6 +9,7 @@ class OppilasController extends BaseController {
     }
     
     public static function oppilaanluonti() {
+        self::check_logged_in();
         $params = $_POST;
      $atribuutit = array(
          'etunimi' => $params['etunimi'], 
@@ -30,13 +31,14 @@ class OppilasController extends BaseController {
     }
     
     public function listaaOppilaat() {
+        self::check_logged_in();
        $oppilaat = Oppilas::haeOppilaat(); 
         View::make('oppilaslista.html', array('oppilaat' => $oppilaat));  
     }
     
     
     public function muokkaaOppilas($id) {
-        
+     //   self::check_logged_in();
         //Kint::dump($id);
         $oppilas = Oppilas::haeOppilas($id);
         
@@ -44,30 +46,32 @@ class OppilasController extends BaseController {
     }
     
     public function tallennaMuokkaus($id) {
+        self::check_logged_in();
         $params = $_POST;
         
-        $attribuutit = array(
+        $oppilas = new Oppilas(array(
             'id' => $id,
             'etunimi' => $params['etunimi'],
             'sukunimi' => $params['sukunimi'],
             'luokka' => $params['luokka']
-        );
+        ));
         
-        $oppilas = new Oppilas($attribuutit);
         $virheet = $oppilas->virheet();
         
-        if(count($virheet) > 0) {
-            View::make('muokkaaOppilas.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
-        } else {
-            $oppilas->tallennaMuokkaus();
+        if(count($virheet) == 0) {
             
+           $oppilas->tallennaMuokkaus($id);
             Redirect::to('/oppilaat', array('message' => 'Tiedot muokattu.'));
+            
+        } else { 
+             View::make('muokkaaOppilas.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
         }
         
     }
     
     
     public function poistaOppilas($id) {
+        self::check_logged_in();
         $oppilas = new Oppilas(array('id' => $id));
         
         $oppilas->poistaOppilas($id);

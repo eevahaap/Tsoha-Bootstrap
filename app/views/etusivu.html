@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Todistukset</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
+
+
         <div>Todistukset luokittain</div>
         <ul>     
     <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a> </li>
@@ -20,6 +11,4 @@ and open the template in the editor.
     <li><a href="{{base_path}}/aineenluonti"> Lisää arvioita oppiaine</a></li>
     
         </ul>  
-       
-    </body>
-</html>
+{% endblock %}       

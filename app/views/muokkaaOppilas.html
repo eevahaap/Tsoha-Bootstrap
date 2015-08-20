@@ -4,7 +4,25 @@
 <div class="container">
     <h1>Muokkaa oppilaan tietoja</h1>
     
+    <form method="post" action="{{base_path}}/oppilas/{{oppilas.id}}/muokkaa">
+        <label>Etunimi</label>
+        <input name="etunimi" class="form-control" type="text" value="{{oppilas.etunimi}}">
+        
+        <label>Sukunimi</label>
+        <input name="sukunimi" class="form-control" type="text" value="{{oppilas.sukunimi}}">
+        
+        <label>Luokka</label>
+        <input name="luokka" class="form-control" type="text" value="{{oppilas.luokka}}">
+        
+        
+    </form>
+    <button class="form-control" type="submit">Tallenna muokkaukset </button>
 </div> 
+
+<div>
+    
+    
+</div>
 
 
 {% endblock %}

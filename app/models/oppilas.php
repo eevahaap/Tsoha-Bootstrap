@@ -9,9 +9,18 @@ class Oppilas  extends BaseModel{
 
 public function __construct($attributes) {
     parent::__construct($attributes);
-    $this->virheet = array();
+    
+    $this->validators = array(
+        'validate_etunimi',
+        'validate_sukunimi',
+        'validate_luokka'
+    );
     
    
+}
+/*
+public function errors() {
+    return parent::errors();
 }
 
 public function getId() {
@@ -38,7 +47,9 @@ public function getVirheet() {
 public function setId($id) {
         $this->id = $id;
     }    
+*/
 
+/*
 
 public function setEtunimi($etunimi) {
         $this->etunimi = $etunimi;
@@ -72,7 +83,7 @@ public function setLuokka($luokka) {
         } else {
             unset($this->virheet['luokka']);
         }
-    }     
+    }   */  
     
     //haetaan oppilaat tietokannasta
     public static function haeOppilaat() {
@@ -132,9 +143,40 @@ public function tallennaOppilas()    {
     $this->id = $row['id'];
 } 
     
+public function validate_etunimi($errors) {
+    if($this->etunimi == '' || $this->etunimi == null) {
+        $errors[] = 'etunimi ei saa olla tyhjä';
+        
+    } 
+    if (strlen($this->name) < 2) {
+        $errors[] = 'etunimen tulee olla vähintään kaksi merkkiä.';
+    } else if (strlen($this->name) > 20) {
+        $errors[] = 'etunimen pituus voi olla enintään 20 merkkiä';
+    }
+        
+}    
     
+public function validate_sukunimi($errors) {
     
-    
+    if($this->sukunimi == '' || $this->sukunimi == null) {
+        $errors[] = 'sukunimi ei saa olla tyhjä';
+        
+    } 
+    if (strlen($this->sukunimi) < 2) {
+        $errors[] = 'sukunimen tulee olla vähintään kaksi merkkiä.';
+    } else if (strlen($this->sukunimi) > 30) {
+        $errors[] = 'sukunimen pituus voi olla enintään 30 merkkiä';
+    }
+}    
+
+public function validate_luokka($errors) {
+    if($this->luokka == '' || $this->luokka == null) {
+        $errors[] = 'luokka ei saa olla tyhjä!';
+    } else if (strlen($this->luokka) > 4) {
+        $errors[] = 'luokka voi olla enintään 4 merkkiä.';
+    }
+}
+
 
 }
 
