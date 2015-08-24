@@ -16,14 +16,14 @@ class Opettaja_controller extends BaseController {
             View::make('kirjautuminen/kirjautuminen.html', array('virhe' => 'Väärä tunnus ja/tai salasana', 'tunnus'=>$params['tunnus']));
             
         } else {
-            $_SESSION['opettaja'] = $opettaja->id;
+            $_SESSION['user'] = $opettaja->id;
             
-            Redirect::to('/', array('viesti' => 'Tervetuloa!' ));
+           Redirect::to('/', array('viesti' => 'Tervetuloa!' ));
         }
     }
     
     public function logout() {
-        $_SESSION['opettaja'] = null;
+        $_SESSION['user'] = null;
         Redirect::to('/kirjautuminen', array('message' =>'olet kirjautunut ulos.'));
         
     }

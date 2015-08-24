@@ -15,7 +15,8 @@ and open the template in the editor.
     <body>
   <div class="container">
     <h1>Arvosanan antaminen</h1>
-    <form class="form-horizontal" role="form" action="lomake.html" method="POST">
+    <form class="form-horizontal" role="form" action="{{base_path}}/oppiaine/arvioi" method="POST">
+        
       <div class="form-group">
         <label>Luokka</label>
         <div class="col-md-10">
@@ -25,13 +26,13 @@ and open the template in the editor.
         <div class="form-group">
         <label>Oppilas</label>
         <div class="col-md-10">
-            <input type="text" name="oppilas">
+            <input type="text" name="oppilas" value="{{oppilas.sukunimi}}">
         </div>
       </div>
         <div class="form-group">
         <label>Oppiaine</label>
         <div class="col-md-10">
-            <input type="text" name="oppiaine">
+            <input type="text" name="oppiaine" value="{{oppiaine.nimi}}">
         </div>
       </div>
         <div class="form-group">

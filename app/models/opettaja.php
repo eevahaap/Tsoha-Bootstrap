@@ -3,7 +3,7 @@
 class Opettaja extends BaseModel {
     public $id, $nimi, $tunnus, $salasana;
     
-    public function __construct($attributes = null) {
+    public function __construct($attributes) {
         parent::__construct($attributes);
     }
   
@@ -12,7 +12,7 @@ class Opettaja extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM Opettaja WHERE tunnus = :tunnus AND salasana = :salasana LIMIT 1');
         $query->execute(array('tunnus'=>$tunnus, 'salasana'=>$salasana));
         $row = $query->fetch();
-        
+       // Kint::dump($row);
         if($row) {
             return new Opettaja(array('id'=>$row['id'], 'nimi'=>$row['nimi'], 'tunnus'=>$row['tunnus'], 'salasana'=>$row['salasana']));
         } else {
