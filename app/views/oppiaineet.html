@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>Oppiaineet</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Oppiaine</th>
+            <th>Opettaja</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+    {% for oppiaine in oppiaineet %}    
+        <tr>
+    <form method="post" action="{{base_path}}/oppiaine/{{oppiaine.nimi}}/valitseLuokka" style="display: inline-block">    
+        <td>{{oppiaine.nimi}}</td>
+        <td>{{oppiaine.opettaja.nimi}}</td>
+        <td><a href="{{base_path}}/oppiaine/{{oppiaine.nimi}}/valitseLuokka" class="btn btn-default">Arvioi</a></td>
+    </form>
+</tr>
+    {% endfor %}
+    </tbody>
+    
+</table>
+
+
+{% endblock %}

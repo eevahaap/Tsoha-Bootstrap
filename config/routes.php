@@ -33,9 +33,6 @@
     HelloWorldController::aineenluonti();
   });
   
-  $routes->get('/arviointi', function() {
-    HelloWorldController::numeronantaminen();
-  });
   
   $routes->get('/oppilaat', 'check_logged_in', function() {
     OppilasController::listaaOppilaat();
@@ -60,3 +57,30 @@
   });
 
 
+  $routes->get('/oppiaineet', 'check_logged_in',function() {
+      Oppiaine_controller::listaaAineet();
+  });
+  
+  $routes->post('/aineenluonti', 'check_logged_in', function() {
+  
+      Oppiaine_controller::aineenLuonti();
+  });
+  
+  $routes->get('/oppiaine/:oppiaineen_nimi/:luokka/arvioi', 'check_logged_in',function($luokka,$oppiaineen_nimi) {
+      HelloWorldController::numeronantaminen($luokka,$oppiaineen_nimi);
+  });
+  
+   $routes->post('/oppiaine/:oppiaineen_nimi/:luokka/arvioi', 'check_logged_in',function($luokka,$oppiaineen_nimi){
+  
+      HelloWorldController::numeronantaminen($luokka,$oppiaineen_nimi);
+  });
+  
+   
+  
+  $routes->get('/oppiaine/:oppiaineen_nimi/valitseLuokka', 'check_logged_in', function($oppiaineen_nimi){
+      HelloWorldController::valitseLuokka($oppiaineen_nimi);
+  });
+  
+ 
+  
+ 

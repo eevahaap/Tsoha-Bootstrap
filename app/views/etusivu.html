@@ -3,12 +3,18 @@
 
 
         <div>Todistukset luokittain</div>
+        
+        {% for oppilas in oppilaat %}
+        <a>{{oppilas.luokka}}</a>
+        {% endfor %}
+        
         <ul>     
     <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a> </li>
     <li><a href="{{base_path}}/uusiopettaja"> Rekisteröidy</a></li>
     <li><a href="{{base_path}}/oppilaat"> Oppilaat </a></li>
     <li><a href="{{base_path}}/uusioppilas"> Lisää oppilas</a></li>
     <li><a href="{{base_path}}/aineenluonti"> Lisää arvioita oppiaine</a></li>
+    <li><a href="{{base_path}}/oppiaineet"> Oppiaineet</a></li>
     
         </ul>  
 {% endblock %}       

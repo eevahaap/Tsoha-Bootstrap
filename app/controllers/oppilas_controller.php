@@ -23,7 +23,7 @@ class OppilasController extends BaseController {
      if (true) {
          $testiopp->tallennaOppilas();
          
-        Redirect::to('/',array('viesti' => 'ok!' ));
+        Redirect::to('/oppilaat',array('viesti' => 'ok!' ));
      } else {
          View::make("oppilaanluonti.html");
      }
@@ -78,6 +78,12 @@ class OppilasController extends BaseController {
         
         Redirect::to('/oppilaat', array('viesti' => 'Oppilas poistettu.'));
     }
+    
+  /*  public function arviointi($id) {
+        self::check_logged_in();
+        
+        
+    } */
     
 }
 

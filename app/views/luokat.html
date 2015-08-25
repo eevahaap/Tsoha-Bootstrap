@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div>Luokat</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>luokka</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        {% for oppilas in oppilaat %}
+        <tr>{{oppilas.luokka}}</tr>
+        {% endfor %}
+        
+    </tbody>
+       
+    
+</table>
+
+
+
+{% endblock %}

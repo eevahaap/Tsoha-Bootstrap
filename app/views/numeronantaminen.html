@@ -1,53 +1,45 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Arvosanan antaminen</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
-        <link href="../css/main.css" rel="stylesheet">
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
+
   <div class="container">
     <h1>Arvosanan antaminen</h1>
-    <form class="form-horizontal" role="form" action="{{base_path}}/oppiaine/arvioi" method="POST">
+    <form class="form-horizontal" role="form" action="{{base_path}}/oppiaine/{{oppiaineen_nimi}}/arvioi" method="POST">
         
       <div class="form-group">
-        <label>Luokka</label>
-        <div class="col-md-10">
-            <input type="text" name="luokka">
-        </div>
+        <label>Luokka:  </label>
       </div>
-        <div class="form-group">
-        <label>Oppilas</label>
-        <div class="col-md-10">
-            <input type="text" name="oppilas" value="{{oppilas.sukunimi}}">
-        </div>
-      </div>
-        <div class="form-group">
-        <label>Oppiaine</label>
-        <div class="col-md-10">
-            <input type="text" name="oppiaine" value="{{oppiaine.nimi}}">
-        </div>
-      </div>
-        <div class="form-group">
-        <label>Arvosana</label>
-        <div class="col-md-10">
-            <input type="text" name="arvosana">
-        </div>
-      </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Etunimi</th>
+                    <th>Sukunimi</th>
+                    <th>Opiskelijanumero</th>
+                    <th>Arvosana</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                {% for oppilas in luokanOppilaat %}
+                <tr>
+                <td>{{oppilas.etunimi}}</td>
+                <td>{{oppilas.sukunimi}}</td>
+                <td>{{oppilas.id}}</td>
+                <td><input name="arvosana" class="form-control" type="text" value="{{attributes.arvosana}}"></td>    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
     
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="button" class="btn btn-default">Arvioi oppiaine</button>
+            <button type="submit" class="btn btn-default">Tallenna arvosanat</button>
         </div>
       </div>
     </form>
   </div>
-</body>
-</html>
+
+
+{% endblock %}

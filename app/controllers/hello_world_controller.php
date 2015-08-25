@@ -43,8 +43,12 @@ require 'app/models/oppilas.php';
     
     
     
-    public static function  numeronantaminen() {
-        View::make('numeronantaminen.html');
+    public static function  numeronantaminen($luokka,$oppiaineen_nimi) {
+        echo $oppiaineen_nimi;
+        $oppiaine = Oppiaine::haeOppiaineet();
+        $oppilaat = Oppilas::haeOppilaat();
+        $luokanoppilaat = Oppilas::haeLuokanOppilaat($luokka);
+        View::make('numeronantaminen.html', array('oppilaat'=>$oppilaat, 'oppiaine'=>$oppiaine, 'luokanoppilaat'=>$luokanoppilaat));
     }
     
     
@@ -57,6 +61,18 @@ require 'app/models/oppilas.php';
          'luokka' => $params['5A'],
          'opiskelijanro' => $params['12345678']
          ));
+    }
+    
+    public static function valitseLuokka($oppiaineen_nimi) {
+        echo $oppiaineen_nimi;
+        $luokat = Oppilas::haeLuokat();
+        View::make('luokanValinta.html', array('luokat'=>$luokat, 'oppiaineen_nimi'=>$oppiaineen_nimi));
+    }
+    
+
+    
+    public static function tallennaArvosanat() {
+        
     }
     
   }

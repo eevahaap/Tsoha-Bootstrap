@@ -178,6 +178,40 @@ public function validate_luokka($errors) {
 }
 
 
+public static function haeLuokat() {
+        $query = DB::connection()->prepare('SELECT distinct luokka FROM Oppilas');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $luokat = array();
+        
+        foreach ($rows as $row) {
+            $luokat[] = new Oppilas(array(
+                'luokka' => $row['luokka']
+                 
+            ));
+        }
+        return $luokat;
+    }
+    
+    
+    public static function haeLuokanOppilaat($luokka) {
+        $query = DB::connection()->prepare('SELECT * FROM Oppilas WHERE luokka=:luokka');
+        $query->execute(array('luokka'=>$luokka));
+        $rows = $query->fetchAll();
+        $oppilaat = array();
+        
+        foreach ($rows as $row) {
+            $oppilaat[] = new Oppilas(array(
+                'id' => $row['id'],
+                'etunimi' => $row['etunimi'],
+                'sukunimi' => $row['sukunimi'],
+                'luokka' => $row['luokka']
+                 
+            ));
+        }
+        return $oppilaat;
+    }
+
 }
 
 
