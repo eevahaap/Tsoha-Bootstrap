@@ -28,10 +28,16 @@ class Opettaja extends BaseModel {
         return new Opettaja(array('id'=>$id, 'nimi'=>$nimi, 'tunnus'=>$tunnus, 'salasana'=>$salasana));
     }
     
+    public function tallennaOpettaja()    {
+    
+    $query = DB::connection()->prepare('INSERT INTO Opettaja(nimi, tunnus, salasana) VALUES (:nimi, :tunnus, :salasana) RETURNING id');
+    $query->execute(array('nimi' => $this->nimi, 'tunnus' => $this->tunnus, 'salasana' => $this->salansana));
+
+    $row = $query->fetch();
+    //Kint::dump($row);
+    $this->id = $row['id'];
+} 
+    
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 

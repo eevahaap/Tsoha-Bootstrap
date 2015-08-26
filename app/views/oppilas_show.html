@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+    {% block content %}
+    
+        <h1>{{oppilas.etunimi}} {{oppilas.sukunimi}}</h1> 
+        <h2>opiskelijanumero: {{oppilas.id}}</h2>
+        
+        <div  class="container">
+            
+        </div>  
+        <table class="table table-bordered">
+            <tr>
+                <th>Oppiaine</th>
+                <th>Arvosana</th>
+            </tr>
+            <tbody>
+                {% for arvosana in arvosanat %}
+                <tr>
+                    {% if arvosana.oppilas_id == oppilas.id %}
+                    <td>{{arvosana.oppiaine}}</td>
+                    <td>{{arvosana}}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+        
+        <a href="{{base_path}}/oppilaat"> Takaisin </a>
+        <a href="{{base_path}}/"> Etusivulle </a>
+    
+    {% endblock %}

@@ -1,4 +1,5 @@
 <?php
+require 'app/models/opettaja.php';
 
 class Opettaja_controller extends BaseController {
     
@@ -13,7 +14,7 @@ class Opettaja_controller extends BaseController {
         $opettaja = Opettaja::kirjautuminen($params['tunnus'], $params['salasana']);
         
         if(!$opettaja) {
-            View::make('kirjautuminen/kirjautuminen.html', array('virhe' => 'Väärä tunnus ja/tai salasana', 'tunnus'=>$params['tunnus']));
+            View::make('kirjautuminen.html', array('virhe' => 'Väärä tunnus ja/tai salasana', 'tunnus'=>$params['tunnus']));
             
         } else {
             $_SESSION['user'] = $opettaja->id;
@@ -24,8 +25,34 @@ class Opettaja_controller extends BaseController {
     
     public function logout() {
         $_SESSION['user'] = null;
-        Redirect::to('/kirjautuminen', array('message' =>'olet kirjautunut ulos.'));
+        Redirect::to('/kirjautuminen', array('viesti' =>'olet kirjautunut ulos.'));
         
+    }
+    
+    public static function rekisterointisivu() {
+        View::make('uusiopettaja.html');
+    }
+    
+    public static function rekistetoidy() {
+        
+        $params = $_POST;
+     $atribuutit = array(
+         'nimi' => $params['nimi'], 
+         'tunnus' => $params['tunnus'], 
+         'salasana' => $params['salasana']
+         );
+     
+     $uusiopettaja = new Oppilas($atribuutit);
+    // $virheet = $testiopp->virheet();
+     
+     if (true) {
+         $uusiopettaja->tallennaOpettaja();
+         
+        Redirect::to('/',array('viesti' => 'Rekisteröinti onnistui, voit kirjautua sisään!' ));
+     } else {
+         View::make("uusiopettaja.html");
+     }
+     
     }
     
     

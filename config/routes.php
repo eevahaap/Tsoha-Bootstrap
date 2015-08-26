@@ -81,6 +81,15 @@
       HelloWorldController::valitseLuokka($oppiaineen_nimi);
   });
   
- 
+  $routes->post('/oppiaineet', function(){
+      HelloWorldController::tallennaArvosanat();
+  });
   
+  $routes->get('/rekisteroidy', function() {
+      Opettaja_controller::rekisterointisivu();
+  });
+  
+  $routes->post('/rekisteroidy', function() {
+      Opettaja_controller::rekistetoidy();
+  });
  

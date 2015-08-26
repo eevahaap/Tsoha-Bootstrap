@@ -6,19 +6,26 @@
 <div class="form-group">
   <label>Valitse luokka</label>
   
- <form method="post" action="{{base_path}}/oppiaine/{{oppiaineen_nimi}}/{{luokka.luokka}}/arvioi" style="display: inline-block">
-  <select class="form-control" name="luokka">
+ <form id="FORM_ID" method="post" action="" style="display: inline-block">
+  <select class="form-control" name="luokka" id="select13">
+      
     {% for luokka in luokat %}
     
-      <option value="{{luokka.luokka}}">{{luokka.luokka}}</option>
-      
+      <option value="{{luokka.luokka}}">{{luokka.luokka}}</option> 
     {% endfor %}
+    
   </select>
   
   <button type="submit" class="btn-default">Seuraava</button>
       
           
   </form>
+  
+  <script type="text/javascript">
+document.getElementById('select13').onchange = function(){
+    document.getElementById('FORM_ID').action = '{{base_path}}/oppiaine/{{oppiaineen_nimi}}/'+this.value+'/arvioi';
+}
+</script>
 </div>
 
 

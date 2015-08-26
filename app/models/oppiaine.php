@@ -38,10 +38,10 @@ public static function haeOppiaineet() {
     
     
     
-public function tallennaOppiaine()    {
+public function tallennaOppiaine($user_id)    {
     
-    $query = DB::connection()->prepare('INSERT INTO Oppiaine(nimi) VALUES (:nimi) RETURNING id');
-    $query->execute(array('nimi' => $this->nimi));
+    $query = DB::connection()->prepare('INSERT INTO Oppiaine(nimi, opettaja_id) VALUES (:nimi, :opettaja_id) RETURNING id');
+    $query->execute(array('nimi' => $this->nimi, 'opettaja_id' => $user_id));
 
     $row = $query->fetch();
     Kint::dump($row);

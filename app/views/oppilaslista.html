@@ -4,7 +4,7 @@
     
     
         <div>Oppilaat</div>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Etunimi</th>
@@ -25,6 +25,8 @@
                     <td>{{oppilas.sukunimi}}</td>
                     <td>{{oppilas.luokka}}</td>
                     <td>{{oppilas.id}} </td>
+                    
+                    
             <form method="post" action="{{base_path}}/oppilas/{{oppilas.id}}/poistaOppilas" style="display: inline-block">
                 <td><button type="submit" class="btn btn-default">Poista</button></td>
             </form>

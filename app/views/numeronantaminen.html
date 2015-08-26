@@ -6,22 +6,22 @@
     <form class="form-horizontal" role="form" action="{{base_path}}/oppiaine/{{oppiaineen_nimi}}/arvioi" method="POST">
         
       <div class="form-group">
-        <label>Luokka:  </label>
+        <label>Luokka: {{luokka}}  Oppiaine: {{oppiaineen_nimi}}</label>
       </div>
         
         <table>
             <thead>
                 <tr>
-                    <th>Etunimi</th>
-                    <th>Sukunimi</th>
-                    <th>Opiskelijanumero</th>
+                    <th>Etunimi </th>
+                    <th>Sukunimi </th>
+                    <th>Opiskelijanumero </th>
                     <th>Arvosana</th>
                 </tr>
             </thead>
             
             <tbody>
                 
-                {% for oppilas in luokanOppilaat %}
+                {% for oppilas in luokanoppilaat %}
                 <tr>
                 <td>{{oppilas.etunimi}}</td>
                 <td>{{oppilas.sukunimi}}</td>

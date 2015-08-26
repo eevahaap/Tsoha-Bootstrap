@@ -38,11 +38,11 @@ class OppilasController extends BaseController {
     
     
     public function muokkaaOppilas($id) {
-     //   self::check_logged_in();
+       self::check_logged_in();
         //Kint::dump($id);
         $oppilas = Oppilas::haeOppilas($id);
         
-       View::make('muokkaaOppilas.html', array('attribuutit' => $oppilas));
+       View::make('muokkaaOppilas.html', array('oppilas' => $oppilas));
     }
     
     public function tallennaMuokkaus($id) {
@@ -56,11 +56,11 @@ class OppilasController extends BaseController {
             'luokka' => $params['luokka']
         ));
         
-        $virheet = $oppilas->virheet();
+        $virheet = $oppilas->errors();
         
         if(count($virheet) == 0) {
             
-           $oppilas->tallennaMuokkaus($id);
+           $oppilas->muokkaaOppilasta($id);
             Redirect::to('/oppilaat', array('message' => 'Tiedot muokattu.'));
             
         } else { 

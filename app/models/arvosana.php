@@ -10,11 +10,11 @@ class Arvosana extends BaseModel {
     
     public function tallennaArvosana()    {
     
-    $query = DB::connection()->prepare('INSERT INTO Arvosana(arvosana) VALUES (:arvosana) RETURNING id');
-    $query->execute(array('arvosana' => $this->arvosana));
+    $query = DB::connection()->prepare('INSERT INTO Arvosana(arvosana, oppilas_id, oppiaine_id) VALUES (:arvosana, :oppilas_id, :oppiaine_id) RETURNING id');
+    $query->execute(array('arvosana' => $this->arvosana, 'oppilas_id' => $this->oppilas_id, 'oppiaine_id' => $this->oppiaine_id));
 
     $row = $query->fetch();
-    Kint::dump($row);
+   // Kint::dump($row);
     $this->id = $row['id'];
 } 
 

@@ -43,12 +43,12 @@ require 'app/models/oppilas.php';
     
     
     
-    public static function  numeronantaminen($luokka,$oppiaineen_nimi) {
-        echo $oppiaineen_nimi;
-        $oppiaine = Oppiaine::haeOppiaineet();
+    public static function  numeronantaminen($oppiaineen_nimi,$luokka) {
+        echo $luokka;
+      //  $oppiaine = Oppiaine::haeOppiaineet();
         $oppilaat = Oppilas::haeOppilaat();
         $luokanoppilaat = Oppilas::haeLuokanOppilaat($luokka);
-        View::make('numeronantaminen.html', array('oppilaat'=>$oppilaat, 'oppiaine'=>$oppiaine, 'luokanoppilaat'=>$luokanoppilaat));
+        View::make('numeronantaminen.html', array('oppilaat'=>$oppilaat, 'oppiaineen_nimi'=>$oppiaineen_nimi, 'luokanoppilaat'=>$luokanoppilaat, 'luokka'=>$luokka));
     }
     
     
