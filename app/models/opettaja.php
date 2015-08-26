@@ -31,7 +31,7 @@ class Opettaja extends BaseModel {
     public function tallennaOpettaja()    {
     
     $query = DB::connection()->prepare('INSERT INTO Opettaja(nimi, tunnus, salasana) VALUES (:nimi, :tunnus, :salasana) RETURNING id');
-    $query->execute(array('nimi' => $this->nimi, 'tunnus' => $this->tunnus, 'salasana' => $this->salansana));
+    $query->execute(array('nimi' => $this->nimi, 'tunnus' => $this->tunnus, 'salasana' => $this->salasana));
 
     $row = $query->fetch();
     //Kint::dump($row);

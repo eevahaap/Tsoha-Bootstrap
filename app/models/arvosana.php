@@ -8,10 +8,10 @@ class Arvosana extends BaseModel {
         parent::__construct($attributes);
     }
     
-    public function tallennaArvosana()    {
+    public static function tallennaArvosana($arvosana, $oppilas_id, $oppiaine_id)    {
     
     $query = DB::connection()->prepare('INSERT INTO Arvosana(arvosana, oppilas_id, oppiaine_id) VALUES (:arvosana, :oppilas_id, :oppiaine_id) RETURNING id');
-    $query->execute(array('arvosana' => $this->arvosana, 'oppilas_id' => $this->oppilas_id, 'oppiaine_id' => $this->oppiaine_id));
+    $query->execute(array('arvosana' => $arvosana, 'oppilas_id' => $oppilas_id, 'oppiaine_id' => $oppiaine_id));
 
     $row = $query->fetch();
    // Kint::dump($row);

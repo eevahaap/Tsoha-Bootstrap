@@ -27,7 +27,7 @@ oppiaine_id integer references oppiaine(id) on delete cascade on update cascade
 CREATE TABLE arvosana
 (
 id serial primary key,
-arvosana integer,
+arvosana varchar(2),
 oppilas_id integer references oppilas(id) on delete cascade on update cascade,
 oppiaine_id integer references oppiaine(id) on delete cascade on update cascade
 );

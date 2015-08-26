@@ -92,4 +92,9 @@
   $routes->post('/rekisteroidy', function() {
       Opettaja_controller::rekistetoidy();
   });
+  
+  $routes->get('/oppilaat/:id','check_logged_in', function($id) {
+      OppilasController::naytaOppilas($id);
+  });
  
+  

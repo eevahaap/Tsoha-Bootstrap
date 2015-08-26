@@ -4,8 +4,7 @@ require 'app/models/opettaja.php';
 class Opettaja_controller extends BaseController {
     
     public function kirjaudu() {
-        View::make('kirjautuminen/kirjautuminen.html');
-       
+        View::make('kirjautuminen/kirjautuminen.html');  
     }
     
     public function tarkistaKirjautuja() {
@@ -42,13 +41,13 @@ class Opettaja_controller extends BaseController {
          'salasana' => $params['salasana']
          );
      
-     $uusiopettaja = new Oppilas($atribuutit);
-    // $virheet = $testiopp->virheet();
+     $uusiopettaja = new Opettaja($atribuutit);
+    
      
      if (true) {
          $uusiopettaja->tallennaOpettaja();
          
-        Redirect::to('/',array('viesti' => 'Rekisteröinti onnistui, voit kirjautua sisään!' ));
+        Redirect::to('/kirjautuminen',array('viesti' => 'Rekisteröinti onnistui, voit kirjautua sisään!' ));
      } else {
          View::make("uusiopettaja.html");
      }

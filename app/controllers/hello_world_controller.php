@@ -1,6 +1,9 @@
 <?php
 
+require 'app/models/opettaja.php';
+require 'app/models/arvosana.php';
 require 'app/models/oppilas.php';
+require 'app/models/oppiaine.php';
 
   class HelloWorldController extends BaseController{
 
@@ -72,6 +75,18 @@ require 'app/models/oppilas.php';
 
     
     public static function tallennaArvosanat() {
+        $params = $_POST;
+       // Kint::dump($params);
+        $oppiaineen_nimi = $params['oppiaineen_nimi'];
+        $oppilas_id = $params['oppilas_id'];
+        $arvosana = $params['arvosana'];
+        $oppiaine_id = Oppiaine::haeOppiaine($oppiaineen_nimi);
+        
+        for ($i = 0; $i < sizeof($oppilas_id); $i++) {
+            Arvosana::tallennaArvosana($arvosana[$i],$oppilas_id[$i],$oppiaine_id);
+        }
+        
+        Redirect::to('/oppiaineet');
         
     }
     

@@ -85,5 +85,12 @@ class OppilasController extends BaseController {
         
     } */
     
+  public function naytaOppilas($id) {
+      self:check_logged_in();
+      
+      $oppilas = Oppilas::haeOppilas($id);
+      self::render_view('oppilas_show.html', array('oppilas'=>$oppilas));
+  }
+    
 }
 

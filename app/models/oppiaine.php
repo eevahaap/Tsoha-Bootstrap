@@ -46,6 +46,18 @@ public function tallennaOppiaine($user_id)    {
     $row = $query->fetch();
     Kint::dump($row);
     $this->id = $row['id'];
-}     
+}    
+
+public static function haeOppiaine($nimi) {
+        $query = DB::connection()->prepare('SELECT id FROM oppiaine WHERE nimi = :nimi LIMIT 1');
+        $query->execute(array('nimi' => $nimi));
+        $row = $query->fetch();
+        if ($row == null) {
+            return null;
+        } else {
+            $oppiaine = new Oppiaine(array('id'=>$row['id']));
+            return $oppiaine;
+        }
+    }
 
 }

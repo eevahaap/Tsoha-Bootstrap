@@ -3,10 +3,11 @@
 
   <div class="container">
     <h1>Arvosanan antaminen</h1>
-    <form class="form-horizontal" role="form" action="{{base_path}}/oppiaine/{{oppiaineen_nimi}}/arvioi" method="POST">
+    <form class="form-horizontal" role="form" action="{{base_path}}/oppiaineet" method="POST">
         
       <div class="form-group">
         <label>Luokka: {{luokka}}  Oppiaine: {{oppiaineen_nimi}}</label>
+        <input name="oppiaineen_nimi" type="hidden" value="{{oppiaineen_nimi}}">
       </div>
         
         <table>
@@ -26,7 +27,8 @@
                 <td>{{oppilas.etunimi}}</td>
                 <td>{{oppilas.sukunimi}}</td>
                 <td>{{oppilas.id}}</td>
-                <td><input name="arvosana" class="form-control" type="text" value="{{attributes.arvosana}}"></td>    
+            <input name="oppilas_id[]" type="hidden" value="{{oppilas.id}}">
+                <td><input name="arvosana[]" class="form-control" type="text" value="{{attributes.arvosana}}"></td>    
                 </tr>
                 {% endfor %}
             </tbody>

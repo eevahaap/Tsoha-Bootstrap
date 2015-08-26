@@ -19,7 +19,7 @@ class Oppiaine_controller extends BaseController {
         self::check_logged_in();
         $params = $_POST;
      $atribuutit = array(
-         'nimi' => $params['nimi']
+         'nimi' => $params['nimi']   
          );
      
      $uusiaine = new Oppiaine($atribuutit);
